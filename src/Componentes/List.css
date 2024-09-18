@@ -48,6 +48,7 @@
     font-size: 16px; /* Tamanho da fonte */
     cursor: pointer; /* Cursor de mão ao passar sobre o botão */
     transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+    margin-top: 5vh;
 }
 
 .btn-warning:hover {

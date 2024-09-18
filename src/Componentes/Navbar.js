@@ -16,7 +16,7 @@ function Navbar(){
         <Link exact to="/dashboard">Dashboard</Link>
       </div>
       <div className="navbar-right">
-        <FavoriteList />
+        <FavoriteList num={0}/>
       </div>
     </nav>
   );
