@@ -5,11 +5,19 @@
   }
   
   .dropdown .btn {
-    background-color: #007bff;
+    background-color: #ffc107;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px; /* Bordas arredondadas do botão */
+    margin-right: 5vh;
+  }
+  
+  /* Estado de hover */
+  .dropdown .btn:hover {
+    background-color: #e0a800; /* Cor de fundo ao passar o mouse */
   }
   
   .dropdown-menu {
@@ -19,13 +27,14 @@
     right: 0;
     background-color: #333;
     color: white;
-    border: 1px solid #444;
-    border-radius: 4px;
+    border: 5px solid rgba(255, 255, 255, 0.304);
+    border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    width: 200px;
+    width: 50vh;
     z-index: 1000;
     list-style: none;
     margin: 0;
+    margin-right: 5vh;
     padding: 0;
   }
   
@@ -46,3 +55,97 @@
     cursor: pointer;
     margin-left: 5vh;
   }
+  /* Estilos gerais para o contêiner da lista */
+.List {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Espaço entre os cards */
+  justify-content: center; /* Centraliza os cards horizontalmente */
+  padding: 20px;
+}
+
+/* Estilo para cada card */
+.card {
+  background-color: #ffffff; /* Cor de fundo do card */
+  border: 1px solid #dddddd; /* Borda do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra do card */
+  overflow: hidden; /* Evita que o conteúdo saia das bordas arredondadas */
+  width: 200px; /* Largura fixa do card */
+  text-align: center; /* Alinha o texto no centro */
+}
+
+/* Estilo para a parte superior do card */
+.card-img-top {
+  background-color: #f0f0f0; /* Cor de fundo do espaço da imagem */
+  padding: 20px;
+  font-size: 24px; /* Tamanho da fonte para o texto de placeholder */
+  color: #999999; /* Cor do texto */
+}
+
+.card-img-top img{
+  width: 100%;
+  height: 25vh;
+}
+
+/* Estilo para o corpo do card */
+.card-body {
+  padding: 15px;
+}
+
+/* Estilo para o texto do card */
+.card-text {
+  margin: 0;
+  font-size: 16px; /* Tamanho da fonte */
+  color: #333333; /* Cor do texto */
+}
+
+/* Estilo para o botão */
+.btn-warning {
+  background-color: #ffc107; /* Cor de fundo do botão */
+  border: none; /* Remove a borda do botão */
+  color: #ffffff; /* Cor do texto do botão */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  border-radius: 4px; /* Bordas arredondadas do botão */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+  transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+  margin-top: 5vh;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px ;
+}
+
+.item-card img {
+  width: 80px; /* Defina a largura da imagem */
+  height: auto; /* Mantém a proporção */
+  border-radius: 5px; /* Arredonda os cantos da imagem */
+  margin-right: 15px; /* Espaço entre a imagem e o texto */
+}
+
+.item-card-content {
+  flex-grow: 1; /* Faz com que a área do texto ocupe o espaço restante */
+}
+
+.item-card-content h4 {
+  margin: 0; /* Remove a margem do título */
+}
+
+.item-card-content p {
+  margin: 10px 0; /* Margem para o preço */
+  margin-top: 10px;
+}
+
+.item-card button {
+  margin-left: auto; /* Alinha o botão à direita */
+}

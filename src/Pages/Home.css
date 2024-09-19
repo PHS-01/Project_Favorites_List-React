@@ -1,0 +1,41 @@
+.Home {
+    position: relative; /* Para posicionar os pseudo-elementos */
+    display: flex; /* Usando flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Altura total da viewport */
+    background-image: url(https://biblioo.info/wp-content/uploads/2017/09/arvore-de-livros.jpg);
+    background-size: cover; /* Cobre toda a área */
+    background-position: center; /* Centraliza a imagem */
+}
+
+.Home::before,
+.Home::after {
+    content: ""; /* Necessário para criar um pseudo-elemento */
+    position: absolute; /* Posiciona em relação ao pai */
+    left: 0;
+    right: 0;
+    height: 50%; /* Altura da camada de degradê */
+}
+
+.Home::before {
+    top: 0; /* Camada no topo */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent); /* Degradê escuro para transparente */
+}
+
+.Home::after {
+    bottom: 0; /* Camada na parte inferior */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); /* Degradê escuro para transparente */
+}
+
+.Home h1 {
+    position: relative; /* Para que o texto fique acima das camadas de degradê */
+    font-size: 5rem; /* Tamanho da fonte grande */
+    color:  #ffc107; /* Cor do texto */
+    margin: 0; /* Remove margens padrão */
+    z-index: 2; /* Coloca o texto acima das camadas */
+    background-color: rgba(0, 0, 0, 0.264);
+    border: 10px;
+    border-radius: 100px;
+    padding: 10px;
+}
