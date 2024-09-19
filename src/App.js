@@ -22,7 +22,7 @@ function App() {
       </div>
     </nav> 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/Project_Favorites_List-React" element={<Home />} />
         <Route path="/dashboard" element={
           <div className="Dashboard">
             <h1>Dashboard</h1>
