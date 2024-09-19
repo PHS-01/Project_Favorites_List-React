@@ -56,8 +56,3 @@ Portanto, utilizamos o `useCallback` para criar a função apenas uma vez, e ela
 Agora, passando para o componente `List`, que está localizado no arquivo `FavoriteList`. Ele tem a função de pegar um array de informações. Neste caso, temos a constante `datas`, um nome genérico que contém um array de arrays com os atributos de cada data/produto. A seguir, temos o `return`, que gera uma lista de produtos em HTML, no qual a função `datas.map` é uma forma de percorrer o array, semelhante ao `foreach` do PHP e ao `for` tradicional. Assim, podemos dizer que é o equivalente ao `foreach` no React.
 
 Por último, mas não menos importante, temos o nosso componente ‘lista de favoritos’, localizado no arquivo `FavoriteList`. Ele tem a função de retornar um código HTML com a lista de favoritos. Nesse caso, temos a constante `items`, que foi passada pelo `useMyContext` (não vamos entrar em detalhes sobre isso), e outra constante chamada `isDropdownOpen`, que controla o estado do nosso dropdown, definindo se ele está aberto ou fechado. Assim, de maneira semelhante ao código anterior, ele percorre o array `items` e cria cada elemento em HTML.
-
-Agora vamos apresentar o nosso resultado final, após a chamada de cada elemento no `App`.
-```
-
-Se precisar de mais alguma coisa, é só avisar!
