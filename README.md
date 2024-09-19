@@ -1,3 +1,10 @@
+# Meu Projeto
+
+Este é um projeto incrível que faz coisas incríveis.
+
+## Links
+- [GitHub Pages](https://PHS-01.github.io/Project_Favorites_List-React)
+
 # 1. Introdução
 A proposta para a utilização do hook `useCallback` partiu da ideia de um sistema de favoritos, onde o usuário pode escolher qualquer um dos itens disponíveis e armazená-los na lista de favoritos, que também permite a exclusão e a adição de novos itens.
 
