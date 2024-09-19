@@ -14,7 +14,7 @@ function App() {
         <div className="logo">MPP</div>
       </div>
       <div className="navbar-center">
-        <Link exact to="/">Home</Link>
+        <Link exact to="/Project_Favorites_List-React">Home</Link>
         <Link exact to="/dashboard">Dashboard</Link>
       </div>
       <div className="navbar-right">
