@@ -14,7 +14,7 @@ function App() {
         <div className="logo">MPP</div>
       </div>
       <div className="navbar-center">
-        <Link exact to="/Project_Favorites_List-React">Home</Link>
+        <Link exact to="/">Home</Link>
         <Link exact to="/dashboard">Dashboard</Link>
       </div>
       <div className="navbar-right">
@@ -22,7 +22,7 @@ function App() {
       </div>
     </nav> 
       <Routes>
-        <Route path="/Project_Favorites_List-React" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={
           <div className="Dashboard">
             <h1>Dashboard</h1>
