@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# 1. Introdução
+A proposta para a utilização do hook `useCallback` partiu da ideia de um sistema de favoritos, onde o usuário pode escolher qualquer um dos itens disponíveis e armazená-los na lista de favoritos, que também permite a exclusão e a adição de novos itens.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Além disso, o propósito desse hook no sistema é evitar que a função `addItem` precise ser reinicializada toda vez que um item for anexado. O `useCallback` será responsável por armazenar a função `addItem`. Um dos membros do grupo também sugeriu utilizá-lo para garantir que os elementos escolhidos pelo usuário sejam preservados, pois, ao renderizar a página, seja ao navegar para outra ou apenas ao atualizar, a lista de favoritos costumava ser resetada, resultando na perda dos itens.
 
-## Available Scripts
+# 2. Como acessar o site
+O primeiro passo seria fazer o download do código que está no repositório: `url do projeto`.
 
-In the project directory, you can run:
+Abra um terminal e digite o seguinte comando:
+```bash
+git clone url_do_projeto
+```
+Após ter feito o download do projeto, no terminal de comando entre na pasta e baixe as dependências do projeto, utilizando o comando:
+```bash
+npm install
+```
+Pronto! Agora está apto para inicializar o projeto.
 
-### `npm start`
+# 3. Hooks utilizados (useContext e useCallback)
+O hook `useCallback` do React é usado para memorizar funções, evitando que elas sejam recriadas em cada renderização do componente. Ele é útil para otimizar a performance, especialmente em componentes que dependem de funções passadas como props para componentes filhos ou que são utilizados em efeitos (com `useEffect`).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A sintaxe básica é:
+```javascript
+const memoizedCallback = useCallback(() => {
+    // lógica da função 
+}, [dependências]);
+```
+A função só será recriada quando uma das dependências mudar. Isso ajuda a evitar re-renderizações desnecessárias, melhorando a performance em componentes que fazem uso intensivo de renderizações.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Uma breve explicação de outro hook utilizado, o `useContext`, permite acessar o contexto em componentes React. Ele simplifica a leitura de valores de contexto. Logo, basta importar o contexto e chamá-lo dentro do componente:
+```javascript
+const value = useContext(MyContext);
+```
+Isso facilita a gestão de estados globais, como temas ou dados do usuário, promovendo uma melhor organização e evitando a "prop drilling".
 
-### `npm test`
+# 4. React-Router-Dom
+O `react-router-dom` é uma biblioteca essencial para gerenciar o roteamento em aplicações React. Ela permite que você defina diferentes rotas para diferentes componentes, facilitando a navegação entre páginas sem recarregar a aplicação.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Principais características:
+- **Definição de Rotas**: Você pode usar o componente `<Routes>` e `<Route>` para especificar quais componentes devem ser renderizados com base no caminho da URL.
+- **Navegação**: A biblioteca oferece o componente `<Link>` para facilitar a navegação entre rotas, substituindo a tag `<a>` padrão e evitando re-carregamentos de página.
 
-### `npm run build`
+Essencial para criar uma experiência de usuário fluida em aplicações React, o `react-router-dom` ajuda a estruturar a navegação de forma eficiente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 5. Uso do hook useCallback no código
+Vamos começar pelo uso do hook `useCallback`. Estamos utilizando-o no arquivo `MyContext`, que faz a ‘ligação’ entre os componentes `FavoriteList` (nosso dropdown, que é basicamente a lista de favoritos), onde cada elemento possui um botão para deletá-lo da lista. O outro componente, chamado `List`, tem a função de exibir uma lista de produtos ou outros itens que podem ser adicionados aos favoritos.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Os valores são fixos, pois não estamos utilizando um banco de dados e cada elemento da lista também tem um botão que permite adicionar esse item à lista de favoritos. Com isso, depois desse breve resumo do sistema e seus componentes, vamos agora analisar um por um.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Vamos começar pelo arquivo `MyContext`:
 
-### `npm run eject`
+Não entraremos a fundo sobre o hook `useContext`, então vamos analisar apenas a constante `itens` e suas funções específicas: a de adicionar um item à lista (`addItem`) e a de deletar um item específico da lista (`deleteItem`). Todas essas funções poderiam ser implementadas sem o uso do `useCallback`, mas, toda vez que a página fosse renderizada, essas funções seriam criadas novamente. Nesta perspectiva, ao longo prazo, isso poderia acarretar uma perda de desempenho na interface.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Portanto, utilizamos o `useCallback` para criar a função apenas uma vez, e ela só será renderizada quando suas dependências mudarem.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Agora, passando para o componente `List`, que está localizado no arquivo `FavoriteList`. Ele tem a função de pegar um array de informações. Neste caso, temos a constante `datas`, um nome genérico que contém um array de arrays com os atributos de cada data/produto. A seguir, temos o `return`, que gera uma lista de produtos em HTML, no qual a função `datas.map` é uma forma de percorrer o array, semelhante ao `foreach` do PHP e ao `for` tradicional. Assim, podemos dizer que é o equivalente ao `foreach` no React.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Por último, mas não menos importante, temos o nosso componente ‘lista de favoritos’, localizado no arquivo `FavoriteList`. Ele tem a função de retornar um código HTML com a lista de favoritos. Nesse caso, temos a constante `items`, que foi passada pelo `useMyContext` (não vamos entrar em detalhes sobre isso), e outra constante chamada `isDropdownOpen`, que controla o estado do nosso dropdown, definindo se ele está aberto ou fechado. Assim, de maneira semelhante ao código anterior, ele percorre o array `items` e cria cada elemento em HTML.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Agora vamos apresentar o nosso resultado final, após a chamada de cada elemento no `App`.
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Se precisar de mais alguma coisa, é só avisar!
